@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block head %} 
+<title>The Statboard</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="idk">
+    <h1>Statboard</h1>
+    <table id = PointsLeaders>
+        <tr>
+            <th>Player name</th>
+            <th>Points per game</th>
+        </tr>
+        {% for aplayer in Players %}
+            <tr>
+                <td>{{ aplayer[1] + " " +aplayer[2]}}</td>
+                <td></td>
+                <td>
+                    <a href="/delete/{{aplayer[0]}}">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <form action="/" method="POST">
+        <input type="text"name="Playerinput">
+        <input type="submit" name="submit">
+    </form>
+</div>
+{% endblock %}

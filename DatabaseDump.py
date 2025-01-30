@@ -3,15 +3,8 @@ import sqlite3
 import psycopg2
 
 sqlite_conn = sqlite3.connect('mydb.db')  
-print("Done")
 sqlite_cursor = sqlite_conn.cursor()
-print("DONE")
-sqlite_cursor.execute("SELECT * FROM Season")
-seasons_data = sqlite_cursor.fetchall()
-print("Done")
-for row in seasons_data:
-    print("done")
-    print(row)
+
 # Connecting to the online database
 Online = psycopg2.connect(
     dbname="bwkv4mjzmrnekdcjycl3",
@@ -63,11 +56,9 @@ cursor.executemany(
 #Now fetching all the data from the table Season 
 sqlite_cursor.execute("SELECT * FROM Season")
 seasons_data = sqlite_cursor.fetchall()
-for row in seasons_data:
-    print
 cursor.executemany(
     """
-    INSERT INTO Season (playerid, Season, Points_per_game, rebounds, assists, fgper, percent3p, steals, blocks, TOs, team)
+    INSERT INTO Season (Season, playerid, Points_per_game, rebounds, assists, fgper, percent3p, steals, blocks, TOs, team)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """,
     seasons_data
